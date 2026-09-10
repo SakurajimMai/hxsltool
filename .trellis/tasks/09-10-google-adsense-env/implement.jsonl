@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/web/frontend/runtime-boundaries.md", "reason": "Env identity and public routes"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Reuse siteConfig env pattern"}

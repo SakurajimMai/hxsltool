@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "tools": "Araçlar",
+    "guides": "Kılavuzlar",
+    "privacy": "Gizlilik",
+    "about": "Hakkında"
+  },
+  "home": {
+    "eyebrow": "Önce yerel dosya işleme",
+    "title": "Dosya işlerini kolaylaştırın.",
+    "description": "PDF, görsel, SVG ve simge araçları. Desteklenen biçimleri, işleme yöntemini ve gerçek sonuçları kontrol edin.",
+    "primary": "Araçları keşfet",
+    "secondary": "Gizlilik nasıl işler?",
+    "featured": "Öne çıkan görevler",
+    "featuredDescription": "Günlük dosya işleriniz için dört araç grubu.",
+    "workflow": "Basit bir iş akışı",
+    "workflowDescription": "Görevi seçin, dosyayı ekleyin ve sonucu inceleyin. Hesap gerekmez.",
+    "privacyTitle": "Dosyalarınız öncelikle cihazınızda.",
+    "privacyDescription": "Yerel araçlar tarayıcıda çalışır. Sunucu araçları yüklemeden önce izin ister; sonuçlar varsayılan olarak 15 dakika sonra silinir.",
+    "browse": "Tümünü gör"
+  },
+  "workspace": {
+    "dropTitle": "Dosyaları buraya bırakın",
+    "dropDescription": "veya cihazınızdan seçin. İşlem yalnızca düğmeye bastığınızda başlar.",
+    "choose": "Dosya seç",
+    "process": "Dosyaları işle",
+    "clear": "Tümünü temizle",
+    "remove": "Kaldır",
+    "waiting": "Bekliyor",
+    "working": "İşleniyor",
+    "ready": "İndirmeye hazır",
+    "failed": "İşlenemedi",
+    "local": "Yerel",
+    "server": "Sunucu",
+    "hybrid": "Yalnızca izinle yükleme",
+    "format": "Biçim",
+    "size": "Boyut",
+    "output": "Çıktı",
+    "consent": "Bu işlem için dosyanın sunucuya yükleneceğini anlıyorum.",
+    "serverConsent": "Sunucuda işleme için açık onayınız gerekir.",
+    "download": "İndir",
+    "noFiles": "Başlamak için en az bir dosya ekleyin."
+  },
+  "category": {
+    "pdf": "PDF araçları",
+    "image": "Görsel araçları",
+    "svg": "SVG araçları",
+    "icons": "Simge araçları"
+  },
+  "common": {
+    "steps": "Nasıl çalışır?",
+    "limits": "Sınırlar ve destek",
+    "privacy": "Gizlilik notu",
+    "related": "Şununla devam et",
+    "faq": "Sık sorulan sorular",
+    "input": "Girdi",
+    "output": "Çıktı",
+    "honest": "Sonuç işlemden sonra kontrol edilir. Sıkıştırma boyutu azaltmıyorsa özgün dosya korunur.",
+    "notFound": "Bu sayfa mevcut değil."
+  }
+}

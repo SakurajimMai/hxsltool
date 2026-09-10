@@ -1,0 +1,22 @@
+# Copy this file to the Caddy host and replace the host names if SITE_URL differs.
+# Compose publishes HXSL on 0.0.0.0:13080 by default; this proxy uses the local
+# endpoint and should be paired with a firewall rule that limits direct access.
+
+www.hxsl.org {
+  redir https://hxsl.org{uri} permanent
+}
+
+hxsl.org {
+  encode zstd gzip
+
+  # Keep uploads within the application contract (MAX_PDF_MB defaults to 50).
+  request_body {
+    max_size 50MB
+  }
+
+  # Caddy preserves the request URI and query string. Do not cache job creation
+  # or token-protected downloads at the proxy layer.
+  @job_api path /api/v1/jobs*
+  header @job_api Cache-Control "no-store"
+  reverse_proxy 127.0.0.1:13080
+}

@@ -1,0 +1,55 @@
+# Local source build of Dockerfile.web (does not pull GHCR).
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        SITE_NAME: ${SITE_NAME:-HXSL Tools}
+        SITE_URL: ${SITE_URL:-http://188.68.56.198:13080}
+        DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
+        ALLOW_INDEXING: ${ALLOW_INDEXING:-true}
+        CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@hxsl.org}
+    environment:
+      NODE_ENV: production
+      SITE_NAME: ${SITE_NAME:-HXSL Tools}
+      SITE_URL: ${SITE_URL:-http://188.68.56.198:13080}
+      DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
+      ALLOW_INDEXING: ${ALLOW_INDEXING:-true}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@hxsl.org}
+      ENABLE_SERVER_TOOLS: ${ENABLE_SERVER_TOOLS:-true}
+      ENABLE_ADS: ${ENABLE_ADS:-false}
+      GOOGLE_ADSENSE_CLIENT: ${GOOGLE_ADSENSE_CLIENT:-}
+      GOOGLE_ADSENSE_SLOT: ${GOOGLE_ADSENSE_SLOT:-}
+      GOOGLE_ADSENSE_AUTO_ADS: ${GOOGLE_ADSENSE_AUTO_ADS:-true}
+      JOB_TOKEN_SECRET: ${JOB_TOKEN_SECRET:-}
+      TRUSTED_PROXY: ${TRUSTED_PROXY:-false}
+      MAX_FILES_PER_BATCH: ${MAX_FILES_PER_BATCH:-100}
+      MAX_IMAGE_MB: ${MAX_IMAGE_MB:-8}
+      MAX_PDF_MB: ${MAX_PDF_MB:-50}
+      MAX_OUTPUT_BYTES: ${MAX_OUTPUT_BYTES:-209715200}
+      MAX_ACTIVE_JOBS: ${MAX_ACTIVE_JOBS:-4}
+      MAX_JOB_SECONDS: ${MAX_JOB_SECONDS:-120}
+      JOB_RATE_LIMIT_PER_MINUTE: ${JOB_RATE_LIMIT_PER_MINUTE:-30}
+      RESULT_TTL_SECONDS: ${RESULT_TTL_SECONDS:-900}
+      HXSL_JOB_DIR: /var/lib/hxsl
+    ports:
+      - "${APP_HOST:-0.0.0.0}:${APP_PORT:-13080}:3000"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=512m
+    volumes:
+      - hxsl-jobs:/var/lib/hxsl
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+volumes:
+  hxsl-jobs:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+      o: size=512m,uid=1001,gid=1001,mode=0700

@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "tools": "Hulpmiddelen",
+    "guides": "Handleidingen",
+    "privacy": "Privacy",
+    "about": "Over ons"
+  },
+  "home": {
+    "eyebrow": "Bestanden eerst lokaal verwerken",
+    "title": "Maak bestandswerk eenvoudiger.",
+    "description": "Hulpmiddelen voor PDF, afbeeldingen, SVG en pictogrammen. Controleer formaten, verwerking en de werkelijke resultaten.",
+    "primary": "Bekijk hulpmiddelen",
+    "secondary": "Hoe privacy werkt",
+    "featured": "Uitgelichte taken",
+    "featuredDescription": "Vier groepen voor dagelijkse bestandstaken.",
+    "workflow": "Een eenvoudige werkwijze",
+    "workflowDescription": "Kies een taak, voeg een bestand toe en bekijk het resultaat. Geen account nodig.",
+    "privacyTitle": "Je bestanden blijven bij voorkeur op je apparaat.",
+    "privacyDescription": "Lokale taken draaien in de browser. Servertaken vragen toestemming voor uploaden; resultaten worden standaard na 15 minuten verwijderd.",
+    "browse": "Alles bekijken"
+  },
+  "workspace": {
+    "dropTitle": "Zet bestanden hier neer",
+    "dropDescription": "of kies bestanden op dit apparaat. De verwerking begint pas als je op de knop drukt.",
+    "choose": "Bestanden kiezen",
+    "process": "Bestanden verwerken",
+    "clear": "Alles wissen",
+    "remove": "Verwijderen",
+    "waiting": "Wachten",
+    "working": "Bezig met verwerken",
+    "ready": "Klaar om te downloaden",
+    "failed": "Verwerking mislukt",
+    "local": "Lokaal",
+    "server": "Server",
+    "hybrid": "Uploaden alleen met toestemming",
+    "format": "Formaat",
+    "size": "Grootte",
+    "output": "Uitvoer",
+    "consent": "Ik begrijp dat dit bestand voor deze taak wordt geüpload.",
+    "serverConsent": "Serververwerking vereist je uitdrukkelijke toestemming.",
+    "download": "Downloaden",
+    "noFiles": "Voeg minstens één bestand toe om te beginnen."
+  },
+  "category": {
+    "pdf": "PDF-tools",
+    "image": "Afbeeldingen",
+    "svg": "SVG-tools",
+    "icons": "Pictogrammen"
+  },
+  "common": {
+    "steps": "Hoe werkt het?",
+    "limits": "Grenzen en ondersteuning",
+    "privacy": "Privacynotitie",
+    "related": "Verder met",
+    "faq": "Veelgestelde vragen",
+    "input": "Invoer",
+    "output": "Uitvoer",
+    "honest": "De uitvoer wordt gecontroleerd. Als compressie geen ruimte bespaart, blijft het oorspronkelijke bestand behouden.",
+    "notFound": "Deze pagina bestaat niet."
+  }
+}

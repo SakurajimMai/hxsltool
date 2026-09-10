@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/web/frontend/runtime-boundaries.md", "reason": "Do not restore AI/admin"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Copy uniqueness via shared helper"}

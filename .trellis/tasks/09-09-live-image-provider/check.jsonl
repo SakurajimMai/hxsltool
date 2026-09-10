@@ -1,0 +1,2 @@
+{"file": "docs/ai-architecture/prd.md", "reason": "Real decode of supplier bytes required"}
+{"file": "docs/ai-architecture/decoder-admission.md", "reason": "Settlement only for persisted images"}

@@ -1,0 +1,72 @@
+/* Touch-friendly navigation and denser small-screen task discovery. */
+.language-trigger { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 8px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-size: 13px; cursor: pointer; }
+.language-trigger:hover { background: var(--accent-soft); color: var(--accent-ink); }
+.language-trigger > span { max-width: 110px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.language-dialog { width: min(540px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 24px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-panel); }
+.language-dialog::backdrop { background: rgb(10 16 28 / .55); }
+.language-dialog[open] { display: grid; grid-template-rows: auto auto minmax(0, 1fr); overflow: hidden; }
+.language-options { overflow-y: auto; overscroll-behavior: contain; min-height: 0; padding: 3px; }
+.language-options a { min-width: 0; overflow-wrap: anywhere; }
+.language-options small { direction: ltr; unicode-bidi: isolate; }
+
+/* Flow follows language; documents, filenames and technical values are not mirrored. */
+html[lang="th"] .public-site :is(h1, h2, h3, button, label) { letter-spacing: normal; line-height: 1.6; }
+.public-site :is(.directory-card h3, .directory-tabs > *, .button) { overflow-wrap: anywhere; }
+[dir="rtl"] .brand { direction: ltr; unicode-bidi: isolate; }
+[dir="rtl"] .directory-card h3 { padding-right: 0; padding-inline-end: 15px; }
+[dir="rtl"] .directory-mode { padding-right: 0; padding-inline-end: 30px; }
+[dir="rtl"] .directory-formats { direction: ltr; unicode-bidi: isolate; padding-right: 0; padding-left: 25px; }
+[dir="rtl"] .public-site .directory-card > .favorite-button { right: auto; left: 12px; }
+[dir="rtl"] .shortcut-card > .favorite-button { right: auto; left: 9px; }
+[dir="rtl"] .shortcut-card > a { padding-right: 14px; padding-left: 47px; }
+[dir="rtl"] .more-menu-panel { right: auto; left: 0; }
+[dir="rtl"] :is(.preset-count, .result-count) { margin-left: 0; margin-inline-start: auto; }
+[dir="rtl"] .copy-stack ol, [dir="rtl"] .content-page ul { padding-left: 0; padding-inline-start: 22px; }
+[dir="rtl"] .field input[type="checkbox"] { margin: 0 0 0 8px; }
+[dir="rtl"] .public-site :is(input[type="number"], input[type="color"], .pdf-page-grid, .signature-pad canvas, pre, code) { direction: ltr; unicode-bidi: isolate; }
+[dir="rtl"] .file-row-info strong { unicode-bidi: plaintext; }
+[dir="rtl"] .queue-heading > div > span { display: inline-block; direction: ltr; unicode-bidi: isolate; }
+body:has(dialog[open]) { overflow: hidden; }
+.language-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.language-dialog-heading h2 { margin: 0; font-size: 24px; }
+.language-filter { display: grid; gap: 8px; font-size: 14px; }
+.language-filter input { width: 100%; min-height: 48px; border: 1px solid var(--line); background: var(--paper); border-radius: 10px; padding: 10px 12px; color: var(--ink); font-size: 16px; }
+.language-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.language-options a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; min-height: 64px; font-size: 15px; text-decoration: none; }
+.language-options a[aria-current], .language-options a:hover { background: var(--accent-soft); border-color: var(--accent); }
+.language-options small { display: block; color: var(--muted); font-size: 12px; margin-top: 3px; }
+.language-empty { margin-top: 18px; }
+@media (max-width: 640px) {
+  .public-site .topbar { padding-inline: 8px; }
+  .public-site .language-trigger, .public-site .theme-toggle, .public-site .mobile-menu-trigger { width: 44px; min-width: 44px; height: 44px; min-height: 44px; justify-content: center; padding: 0; }
+  .language-trigger > span { display: none; }
+  .public-site:has(.directory-home)::before { height: 124px; background-size: 900px 124px; }
+  .directory-intro { padding-top: 72px; padding-bottom: 24px; }
+  .directory-intro h1 { font-size: 28px; line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; }
+  .directory-intro h1 > span { margin-top: 12px; font-size: 17px; line-height: 1.5; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+  .directory-trust { gap: 8px 14px; }
+  .directory-trust li { font-size: 12px; }
+  .directory-toolbar .hero-search { grid-row: 1; }
+  .directory-toolbar { grid-template-columns: minmax(0, 1fr); }
+  .directory-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; width: 100%; }
+  .directory-tabs > * { min-height: 44px; padding: 6px; white-space: normal; text-align: center; }
+  .directory-card-link { min-height: 180px; padding: 18px; }
+  .directory-card-link > svg { width: 22px; height: 22px; margin-bottom: 12px; }
+  .directory-card p { margin-bottom: 12px; }
+  .public-site .favorite-button, .public-site .icon-button { min-width: 44px; min-height: 44px; }
+  .public-site .field input:not([type="checkbox"]), .public-site .field select, .public-site textarea, .public-site .search-input-wrap input { font-size: 16px; min-height: 44px; }
+  .public-site .status-line { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .public-site .status-line .button-row { display: flex; width: 100%; }
+  .public-site .status-line .button-row .button { flex: 1 1 140px; }
+  .public-site .file-row-actions { gap: 8px; }
+  .public-site .file-row-actions .button { flex: 1 1 120px; }
+  .public-site .file-row-info, .public-site .file-row-info strong { min-width: 0; overflow-wrap: anywhere; }
+  .public-site .footer { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  .language-dialog { padding: 18px; }
+  .language-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 359px) {
+  .public-site .topbar .brand > span:last-child { max-width: none; font-size: 13px; white-space: nowrap; }
+  .public-site .topbar .brand { gap: 5px; }
+  .public-site .topbar .brand-mark { width: 26px; height: 26px; }
+}

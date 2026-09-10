@@ -1,0 +1,7 @@
+packages:
+  - apps/web
+  - packages/tool-registry
+  - packages/processing-shared
+allowBuilds:
+  esbuild: true
+  sharp: true

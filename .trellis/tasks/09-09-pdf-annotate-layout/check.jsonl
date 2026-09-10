@@ -1,0 +1,4 @@
+{"file": "docs/ai-architecture/prd.md", "reason": "Do not claim AI vendor or payment certification"}
+{"file": "docs/ai-architecture/tool-output-matrix.md", "reason": "Only count identities with download evidence"}
+{"file": "docs/ai-architecture/pdf-pages-review.md", "reason": "Reopen PDFs for size, order, and source markers"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Check browser and shared adapters together"}

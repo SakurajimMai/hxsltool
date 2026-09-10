@@ -1,0 +1,37 @@
+FROM node:22-bookworm-slim AS base
+ENV PNPM_HOME=/pnpm
+ENV PATH=$PNPM_HOME:$PATH
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN corepack enable
+WORKDIR /app
+FROM base AS deps
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json ./
+COPY apps/web/package.json apps/web/package.json
+COPY packages/tool-registry/package.json packages/tool-registry/package.json
+COPY packages/processing-shared/package.json packages/processing-shared/package.json
+RUN pnpm install --frozen-lockfile
+FROM deps AS build
+ARG SITE_NAME=HXSL Tools
+ARG SITE_URL=https://hxsl.org
+ARG DEFAULT_LOCALE=en
+ARG ALLOW_INDEXING=true
+ARG CONTACT_EMAIL=hello@hxsl.org
+ENV SITE_NAME=$SITE_NAME
+ENV SITE_URL=$SITE_URL
+ENV DEFAULT_LOCALE=$DEFAULT_LOCALE
+ENV ALLOW_INDEXING=$ALLOW_INDEXING
+ENV CONTACT_EMAIL=$CONTACT_EMAIL
+COPY . .
+RUN pnpm --filter @hxsl/web build
+FROM node:22-bookworm-slim AS runner
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV HOSTNAME=0.0.0.0
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends ghostscript qpdf poppler-utils tesseract-ocr libreoffice-writer libreoffice-calc libreoffice-impress fonts-noto-core && rm -rf /var/lib/apt/lists/* && groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nodejs nextjs && mkdir -p /var/lib/hxsl && chown -R nextjs:nodejs /var/lib/hxsl
+COPY --from=build /app/apps/web/.next/standalone ./
+COPY --from=build /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=build /app/apps/web/public ./apps/web/public
+USER nextjs
+EXPOSE 3000
+CMD ["node", "apps/web/server.js"]

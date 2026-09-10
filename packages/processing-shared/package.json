@@ -1,0 +1,9 @@
+{
+  "name": "@hxsl/processing-shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": { "types": "./src/index.ts", "import": "./dist/index.js", "default": "./dist/index.js" } },
+  "dependencies": { "jszip": "3.10.1", "pdf-lib": "1.17.1", "sharp": "0.34.3" },
+  "scripts": { "build": "tsc -p tsconfig.build.json", "typecheck": "tsc -p tsconfig.json", "test": "vitest run" }
+}

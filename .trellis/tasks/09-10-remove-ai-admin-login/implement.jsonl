@@ -1,0 +1,3 @@
+{"file": ".trellis/spec/web/frontend/index.md", "reason": "Web package guideline index for retained frontend conventions"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Shared configuration and job data-flow boundary guidance"}
+{"file": ".trellis/tasks/09-10-remove-ai-admin-login/research/removal-evidence.md", "reason": "Repository inventory, retained boundaries, and approved retirement decisions"}

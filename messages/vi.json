@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "tools": "Công cụ",
+    "guides": "Hướng dẫn",
+    "privacy": "Quyền riêng tư",
+    "about": "Giới thiệu"
+  },
+  "home": {
+    "eyebrow": "Ưu tiên xử lý tại thiết bị",
+    "title": "Xử lý tệp dễ dàng hơn.",
+    "description": "Công cụ PDF, hình ảnh, SVG và biểu tượng. Kiểm tra định dạng hỗ trợ, cách xử lý và kết quả thực tế.",
+    "primary": "Khám phá công cụ",
+    "secondary": "Cách bảo vệ dữ liệu",
+    "featured": "Tác vụ nổi bật",
+    "featuredDescription": "Bốn nhóm công cụ cho công việc hằng ngày.",
+    "workflow": "Quy trình đơn giản",
+    "workflowDescription": "Chọn tác vụ, thêm tệp và kiểm tra kết quả. Không cần tài khoản.",
+    "privacyTitle": "Ưu tiên giữ tệp trên thiết bị.",
+    "privacyDescription": "Công cụ cục bộ chạy trong trình duyệt. Công cụ máy chủ xin phép trước khi tải lên; kết quả mặc định bị xóa sau 15 phút.",
+    "browse": "Xem tất cả"
+  },
+  "workspace": {
+    "dropTitle": "Thả tệp vào đây",
+    "dropDescription": "hoặc chọn tệp từ thiết bị. Chỉ bắt đầu xử lý khi bạn nhấn nút.",
+    "choose": "Chọn tệp",
+    "process": "Xử lý tệp",
+    "clear": "Xóa tất cả",
+    "remove": "Loại bỏ",
+    "waiting": "Đang chờ",
+    "working": "Đang xử lý",
+    "ready": "Sẵn sàng tải xuống",
+    "failed": "Không thể xử lý",
+    "local": "Cục bộ",
+    "server": "Máy chủ",
+    "hybrid": "Chỉ tải lên khi đồng ý",
+    "format": "Định dạng",
+    "size": "Dung lượng",
+    "output": "Đầu ra",
+    "consent": "Tôi hiểu tệp này sẽ được tải lên để thực hiện tác vụ.",
+    "serverConsent": "Xử lý trên máy chủ cần sự đồng ý rõ ràng của bạn.",
+    "download": "Tải xuống",
+    "noFiles": "Thêm ít nhất một tệp để bắt đầu."
+  },
+  "category": {
+    "pdf": "Công cụ PDF",
+    "image": "Công cụ hình ảnh",
+    "svg": "Công cụ SVG",
+    "icons": "Công cụ biểu tượng"
+  },
+  "common": {
+    "steps": "Cách sử dụng",
+    "limits": "Giới hạn và hỗ trợ",
+    "privacy": "Lưu ý về quyền riêng tư",
+    "related": "Tiếp tục với",
+    "faq": "Câu hỏi thường gặp",
+    "input": "Đầu vào",
+    "output": "Đầu ra",
+    "honest": "Kết quả được kiểm tra sau khi xử lý. Nếu nén không giảm dung lượng, tệp gốc được giữ lại.",
+    "notFound": "Trang này không tồn tại."
+  }
+}

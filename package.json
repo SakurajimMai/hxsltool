@@ -1,0 +1,39 @@
+{
+  "name": "hxsl-tools",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.3.4",
+  "engines": { "node": ">=20.11 <23" },
+  "scripts": {
+    "dev": "pnpm --filter @hxsl/web dev",
+    "build": "pnpm --filter @hxsl/web build",
+    "lint": "pnpm --filter @hxsl/web lint",
+    "typecheck": "pnpm -r typecheck",
+    "build:packages": "pnpm --filter @hxsl/processing-shared build && pnpm --filter @hxsl/tool-registry build",
+    "pretest": "pnpm build:packages",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter @hxsl/web test:e2e && pnpm test:e2e:browser",
+    "test:e2e:browser": "pnpm --filter @hxsl/tool-registry build && playwright test",
+    "perf:lighthouse": "node scripts/lighthouse.mjs",
+    "content:check": "tsx scripts/content-check.ts",
+    "seo:check": "tsx scripts/seo-check.ts",
+    "test:internal": "node scripts/internal-smoke.mjs",
+    "test:docker-context": "node scripts/docker-context-check.mjs",
+    "test:local:images": "tsx scripts/local-image-output-check.mts",
+    "test:local:pdf-batch": "tsx scripts/local-pdf-batch-check.mts",
+    "test:local:pdf-pages": "tsx scripts/local-pdf-pages-check.mts",
+    "test:local:pdf-annotate": "tsx scripts/local-pdf-annotate-check.mts",
+    "test:local:svg": "tsx scripts/local-svg-icon-check.mts",
+    "test:local:recompute": "tsx scripts/local-recompute-check.mts",
+    "test:a11y": "node scripts/lighthouse.mjs",
+    "i18n:check": "tsx scripts/content-check.ts",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm content:check && pnpm seo:check && pnpm build && pnpm test:e2e && pnpm test:internal && ALLOW_INDEXING=true pnpm test:a11y"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.51.1",
+    "lighthouse": "12.3.0",
+    "tsx": "4.20.3",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  }
+}

@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/web/frontend/runtime-boundaries.md", "reason": "Public tool discovery, config, routes"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Reuse i18n/public-config instead of new CMS"}

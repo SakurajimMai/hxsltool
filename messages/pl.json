@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "tools": "Narzędzia",
+    "guides": "Poradniki",
+    "privacy": "Prywatność",
+    "about": "O nas"
+  },
+  "home": {
+    "eyebrow": "Przetwarzanie przede wszystkim lokalne",
+    "title": "Ułatw sobie pracę z plikami.",
+    "description": "Narzędzia PDF, obrazów, SVG i ikon. Sprawdzaj obsługiwane formaty, sposób przetwarzania i rzeczywiste wyniki.",
+    "primary": "Przeglądaj narzędzia",
+    "secondary": "Jak chronimy prywatność",
+    "featured": "Polecane zadania",
+    "featuredDescription": "Cztery grupy narzędzi do codziennej pracy.",
+    "workflow": "Prosty przebieg pracy",
+    "workflowDescription": "Wybierz zadanie, dodaj plik i sprawdź wynik. Bez konta.",
+    "privacyTitle": "Twoje pliki przede wszystkim na urządzeniu.",
+    "privacyDescription": "Zadania lokalne działają w przeglądarce. Serwer wymaga zgody na przesłanie; wyniki domyślnie są usuwane po 15 minutach.",
+    "browse": "Zobacz wszystkie"
+  },
+  "workspace": {
+    "dropTitle": "Upuść pliki tutaj",
+    "dropDescription": "lub wybierz je z urządzenia. Przetwarzanie rozpocznie się dopiero po naciśnięciu przycisku.",
+    "choose": "Wybierz pliki",
+    "process": "Przetwórz pliki",
+    "clear": "Wyczyść wszystko",
+    "remove": "Usuń",
+    "waiting": "Oczekiwanie",
+    "working": "Przetwarzanie",
+    "ready": "Gotowe do pobrania",
+    "failed": "Nie udało się przetworzyć",
+    "local": "Lokalnie",
+    "server": "Serwer",
+    "hybrid": "Przesyłanie tylko za zgodą",
+    "format": "Format",
+    "size": "Rozmiar",
+    "output": "Wynik",
+    "consent": "Rozumiem, że plik zostanie przesłany do wykonania tego zadania.",
+    "serverConsent": "Przetwarzanie na serwerze wymaga wyraźnej zgody.",
+    "download": "Pobierz",
+    "noFiles": "Dodaj co najmniej jeden plik, aby rozpocząć."
+  },
+  "category": {
+    "pdf": "Narzędzia PDF",
+    "image": "Narzędzia obrazów",
+    "svg": "Narzędzia SVG",
+    "icons": "Narzędzia ikon"
+  },
+  "common": {
+    "steps": "Jak to działa",
+    "limits": "Limity i obsługa",
+    "privacy": "Informacja o prywatności",
+    "related": "Kontynuuj za pomocą",
+    "faq": "Częste pytania",
+    "input": "Wejście",
+    "output": "Wyjście",
+    "honest": "Wynik jest sprawdzany po przetworzeniu. Jeśli kompresja nie zmniejsza rozmiaru, zachowywany jest oryginał.",
+    "notFound": "Ta strona nie istnieje."
+  }
+}

@@ -1,0 +1,5 @@
+{"file": "docs/ai-architecture/prd.md", "reason": "Standing architecture AI Goal and infinite-canvas ban"}
+{"file": "docs/ai-architecture/tool-output-matrix.md", "reason": "Current 44/82 coverage and unverified local PDF identities"}
+{"file": "docs/ai-architecture/pdf-pages-review.md", "reason": "Prior page-operation contracts: preview must not rewrite the full plan"}
+{"file": "docs/ai-architecture/pdf-page-accessibility.md", "reason": "Localized PdfPageError and move-button leftover helper copy"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Browser vs shared processing must stay aligned"}

@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server";
+import { getJob, resultBuffer } from "../../../../../../lib/jobs";
+export const runtime = "nodejs";
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) { const { id } = await params; const job = await getJob(id, new URL(request.url).searchParams.get("token")); if (!job) return NextResponse.json({ message: "Job not found." }, { status: 404, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } }); const data = await resultBuffer(job); if (!data) return NextResponse.json({ message: "Result is not ready or has expired." }, { status: 410, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } }); return new NextResponse(data as BodyInit, { headers: { "Content-Type": job.outputMime ?? "application/octet-stream", "Content-Disposition": `attachment; filename="${job.outputName ?? "result.bin"}"`, "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } }); }

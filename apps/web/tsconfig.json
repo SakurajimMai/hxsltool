@@ -1,0 +1,30 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "allowJs": true,
+    "incremental": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next-browser/types/**/*.ts",
+    ".next-http-smoke/types/**/*.ts",
+    ".next-local-build/types/**/*.ts",
+    ".next-locale-review/types/**/*.ts",
+    ".next-mobile-meta/types/**/*.ts",
+    ".next-ui-check/types/**/*.ts",
+    ".next-v3-capture/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next-*"
+  ]
+}

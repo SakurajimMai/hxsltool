@@ -1,0 +1,3 @@
+# Alias of compose.yaml (GHCR pull).
+include:
+  - path: compose.yaml
