@@ -4,9 +4,26 @@ const configuredDefaultLocale = process.env.DEFAULT_LOCALE ?? "en";
 function positiveNumber(value: string | undefined, fallback: number) { const parsed = Number(value ?? fallback); return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback; }
 function envText(name: string) { const value = process.env[name]?.trim(); return value ? value : undefined; }
 
+/** Accept `https://host` or a bare host. Reject unusable values instead of throwing later in `new URL()`. */
+export function parsePublicOrigin(raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  const trimmed = raw.trim().replace(/\/+$/, "");
+  if (!trimmed) return undefined;
+  const candidate = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(candidate);
+    if ((url.protocol !== "http:" && url.protocol !== "https:") || !url.hostname) return undefined;
+    return url.origin;
+  } catch {
+    return undefined;
+  }
+}
+
+function loopbackOrigin() { return `http://127.0.0.1:${envText("APP_PORT") ?? "13080"}`; }
+
 export const siteConfig = {
   name: process.env.SITE_NAME ?? "HXSL Tools",
-  url: envText("SITE_URL") ?? `http://127.0.0.1:${envText("APP_PORT") ?? "13080"}`,
+  url: parsePublicOrigin(envText("SITE_URL")) ?? loopbackOrigin(),
   defaultLocale: locales.includes(configuredDefaultLocale as (typeof locales)[number]) ? configuredDefaultLocale as (typeof locales)[number] : "en",
   locales,
   allowIndexing: envText("ALLOW_INDEXING") !== "false",

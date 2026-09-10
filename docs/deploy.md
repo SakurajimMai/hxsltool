@@ -60,7 +60,7 @@ Required variables (no checked-in public origin):
 
 | Key | Value |
 | --- | --- |
-| `SITE_URL` | Public origin for this deployment (`${ZEABUR_WEB_URL}` or the bound HTTPS origin) |
+| `SITE_URL` | Absolute origin with scheme, e.g. the bound `https://www.…` host. `${ZEABUR_WEB_URL}` only if Zeabur expands it; a bare hostname without `https://` used to 500 the HTML pages. |
 | `TRUSTED_PROXY` | `true` |
 | `JOB_TOKEN_SECRET` | Strong random secret |
 | `CONTACT_EMAIL` | Operator mailbox, or empty |

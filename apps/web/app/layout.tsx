@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { LOCALES, type Locale } from "@hxsl/tool-registry";
-import { siteConfig } from "../../../config/site";
+import { parsePublicOrigin, siteConfig } from "../../../config/site";
 import { getLanguageCopy } from "../lib/language-copy";
 import { jsonLdScript, organizationJsonLd, websiteJsonLd } from "../lib/json-ld";
 import { adsConfig } from "../lib/ads";
@@ -9,10 +9,20 @@ import { GoogleAdsense } from "../components/GoogleAdsense";
 import "./globals.css";
 import "./mobile-presentation.css";
 
+function metadataBase(headersList: Headers): URL {
+  const host = headersList.get("x-forwarded-host")?.split(",")[0]?.trim() || headersList.get("host")?.split(",")[0]?.trim();
+  const forwarded = process.env.TRUSTED_PROXY === "true" ? headersList.get("x-forwarded-proto")?.split(",")[0]?.trim() : undefined;
+  const protocol = forwarded === "http" || forwarded === "https" ? forwarded : "https";
+  const fromRequest = host ? parsePublicOrigin(`${protocol}://${host}`) : undefined;
+  const fromEnv = parsePublicOrigin(siteConfig.url);
+  const envIsLocal = !fromEnv || /^(https?:\/\/)?(127\.0\.0\.1|localhost|0\.0\.0\.0)(:|$)/i.test(fromEnv);
+  return new URL((envIsLocal && fromRequest) || fromEnv || fromRequest || "http://127.0.0.1:3000");
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  await headers();
+  const headersList = await headers();
   return {
-    metadataBase: new URL(siteConfig.url),
+    metadataBase: metadataBase(headersList),
     title: { default: siteConfig.name, template: `%s · ${siteConfig.name}` },
     description: "HXSL Tools is a browser-first PDF, image, SVG and icon utility. It is not Haxe Shader Language.",
     robots: siteConfig.allowIndexing ? { index: true, follow: true } : { index: false, follow: false },

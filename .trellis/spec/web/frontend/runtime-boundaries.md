@@ -14,7 +14,7 @@ Use this contract when changing public tool discovery, deployment configuration,
 ## 3. Contracts
 
 - Tool publication, names, descriptions, FAQs, featured ordering, defaults, and active state come from `@hxsl/tool-registry`, localization helpers, and `apps/web/lib/public-config.ts`.
-- Limits and site identity come from `config/site.ts` and the documented environment keys in `.env.example`. Public origin (`SITE_URL`) and contact (`CONTACT_EMAIL`) are env-only: trim empty values, never fall back to a checked-in hostname, public IP, or mailbox, and do not pass them as Docker build-args.
+- Limits and site identity come from `config/site.ts` and the documented environment keys in `.env.example`. Public origin (`SITE_URL`) and contact (`CONTACT_EMAIL`) are env-only: trim empty values, never fall back to a checked-in hostname, public IP, or mailbox, and do not pass them as Docker build-args. `SITE_URL` must be an `http(s)` origin; a bare host is treated as `https://host`. Invalid values must not throw from `new URL()` during HTML render.
 - Server-labelled tools require explicit upload consent but never a user session.
 - Web stores short-lived, token-protected job files under `HXSL_JOB_DIR` and executes server-labelled jobs in-process with the configured timeout and cancellation signal.
 - Serialize manifest writes per job and check active state after processing and output writes; cancelled or expired tasks must never publish late results. Admission uses `MAX_ACTIVE_JOBS`, without a separate pending queue.
