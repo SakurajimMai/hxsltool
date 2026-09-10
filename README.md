@@ -64,7 +64,7 @@ To build the image from local source:
 docker compose -f compose.build.yaml up -d --build
 ```
 
-Zeabur can run the same image: pull `ghcr.io/sakurajimmai/hxsltool` as a Docker service, or import this GitHub repo so it builds `Dockerfile.web` (`zbpack.json`). Set `SITE_URL`, `TRUSTED_PROXY=true`, and `JOB_TOKEN_SECRET` in the Zeabur dashboard. Do not use Zeabur's Node/Next builder. Details are in [docs/deploy.md](docs/deploy.md).
+Zeabur: pull `ghcr.io/sakurajimmai/hxsltool` as a Docker service (do not use the Node/Next builder). Full steps: [docs/zeabur.md](docs/zeabur.md).
 
 The default host binding is `0.0.0.0:13080`. For production, put Caddy or Nginx in front, restrict direct port access, and configure DNS, TLS, contact details, `ALLOW_INDEXING=true`, and webmaster verification as documented in [docs/deploy.md](docs/deploy.md).
 
