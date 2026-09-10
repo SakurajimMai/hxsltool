@@ -5,10 +5,10 @@ services:
     environment:
       NODE_ENV: production
       SITE_NAME: ${SITE_NAME:-HXSL Tools}
-      SITE_URL: ${SITE_URL:-http://188.68.56.198:13080}
+      SITE_URL: ${SITE_URL:-}
       DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
       ALLOW_INDEXING: ${ALLOW_INDEXING:-true}
-      CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@hxsl.org}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-}
       ENABLE_SERVER_TOOLS: ${ENABLE_SERVER_TOOLS:-true}
       ENABLE_ADS: ${ENABLE_ADS:-false}
       GOOGLE_ADSENSE_CLIENT: ${GOOGLE_ADSENSE_CLIENT:-}

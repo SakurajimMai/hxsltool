@@ -44,6 +44,4 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             SITE_NAME=HXSL Tools
-            SITE_URL=https://hxsl.org
             DEFAULT_LOCALE=en
-            ALLOW_INDEXING=true

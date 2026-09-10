@@ -12,15 +12,9 @@ COPY packages/processing-shared/package.json packages/processing-shared/package.
 RUN pnpm install --frozen-lockfile
 FROM deps AS build
 ARG SITE_NAME=HXSL Tools
-ARG SITE_URL=https://hxsl.org
 ARG DEFAULT_LOCALE=en
-ARG ALLOW_INDEXING=true
-ARG CONTACT_EMAIL=hello@hxsl.org
 ENV SITE_NAME=$SITE_NAME
-ENV SITE_URL=$SITE_URL
 ENV DEFAULT_LOCALE=$DEFAULT_LOCALE
-ENV ALLOW_INDEXING=$ALLOW_INDEXING
-ENV CONTACT_EMAIL=$CONTACT_EMAIL
 COPY . .
 RUN pnpm --filter @hxsl/web build
 FROM node:22-bookworm-slim AS runner

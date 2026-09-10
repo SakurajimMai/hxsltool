@@ -14,7 +14,7 @@ Use this contract when changing public tool discovery, deployment configuration,
 ## 3. Contracts
 
 - Tool publication, names, descriptions, FAQs, featured ordering, defaults, and active state come from `@hxsl/tool-registry`, localization helpers, and `apps/web/lib/public-config.ts`.
-- Limits and site identity come from `config/site.ts` and the documented environment keys in `.env.example`.
+- Limits and site identity come from `config/site.ts` and the documented environment keys in `.env.example`. Public origin (`SITE_URL`) and contact (`CONTACT_EMAIL`) are env-only: trim empty values, never fall back to a checked-in hostname, public IP, or mailbox, and do not pass them as Docker build-args.
 - Server-labelled tools require explicit upload consent but never a user session.
 - Web stores short-lived, token-protected job files under `HXSL_JOB_DIR` and executes server-labelled jobs in-process with the configured timeout and cancellation signal.
 - Serialize manifest writes per job and check active state after processing and output writes; cancelled or expired tasks must never publish late results. Admission uses `MAX_ACTIVE_JOBS`, without a separate pending queue.
@@ -75,4 +75,4 @@ const job = await createJob(files, toolId, options, consent, clientKey);
 }
 ```
 
-GitHub Actions on `main` publishes `ghcr.io/sakurajimmai/hxsltool` (`latest` and `sha-<commit>`) from `Dockerfile.web`. Production start is `docker compose up -d` (`compose.yaml` pulls GHCR; `compose.ghcr.yaml` is an alias). Local source builds use `compose.build.yaml`. Do not commit `.env`.
+GitHub Actions on `main` publishes `ghcr.io/sakurajimmai/hxsltool` (`latest` and `sha-<commit>`) from `Dockerfile.web`. The image build may bake product defaults such as `SITE_NAME` and `DEFAULT_LOCALE`, but not a public origin, contact address, or indexing policy. Production start is `docker compose up -d` (`compose.yaml` pulls GHCR; `compose.ghcr.yaml` is an alias). Local source builds use `compose.build.yaml`. Do not commit `.env`.

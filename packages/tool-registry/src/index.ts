@@ -76,7 +76,7 @@ const svgToolOptions: Record<string, ToolOption[]> = {
   "svg-palette-swapper": [{ key: "palette", label: "Palette", type: "select", defaultValue: "original", choices: ["original", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] }],
   "svg-to-png": [{ key: "width", label: "Width", type: "number" }, { key: "height", label: "Height", type: "number" }, { key: "scale", label: "Scale", type: "select", defaultValue: "1", choices: ["1", "2", "3", "4"] }],
   "svg-to-webp": [{ key: "width", label: "Width", type: "number" }, { key: "height", label: "Height", type: "number" }, { key: "scale", label: "Scale", type: "select", defaultValue: "1", choices: ["1", "2", "3", "4"] }],
-  "svg-qr-code": [{ key: "text", label: "QR content", type: "text", defaultValue: "https://hxsl.org" }, { key: "errorCorrection", label: "Error correction", type: "select", defaultValue: "M", choices: ["L", "M", "Q", "H"] }],
+  "svg-qr-code": [{ key: "text", label: "QR content", type: "text", defaultValue: "https://example.com" }, { key: "errorCorrection", label: "Error correction", type: "select", defaultValue: "M", choices: ["L", "M", "Q", "H"] }],
 };
 const iconToolOptions: ToolOption[] = [
   { key: "fit", label: "Fit", type: "select", defaultValue: "contain", choices: ["contain", "cover"] },

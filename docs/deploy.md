@@ -2,7 +2,7 @@
 
 ## Configure
 
-Copy `.env.example` to `.env` and set `SITE_URL`, `CONTACT_EMAIL` and a strong `JOB_TOKEN_SECRET`. Keep `ALLOW_INDEXING=false` until DNS, TLS, contact details and privacy copy have been reviewed.
+Copy `.env.example` to `.env` and set `SITE_URL`, `CONTACT_EMAIL` and a strong `JOB_TOKEN_SECRET`. Public origin and contact email come only from the deployment environment; they are never checked-in defaults and are not Docker build-args. Keep `ALLOW_INDEXING=false` until DNS, TLS, contact details and privacy copy have been reviewed.
 
 Google AdSense stays off unless both `ENABLE_ADS=true` and a valid `GOOGLE_ADSENSE_CLIENT` (`ca-pub-…`) are set. Optional `GOOGLE_ADSENSE_SLOT` adds one display unit above the footer; `GOOGLE_ADSENSE_AUTO_ADS` defaults to `true`. After enabling ads, confirm `/ads.txt` and that the privacy footer no longer claims advertising scripts are absent. Restart the Web process (and rebuild if CSP was baked at image build time) after changing these values.
 
@@ -57,7 +57,7 @@ Run the health endpoint, `pnpm test:internal`, and a representative local tool s
 
 ## Search setup
 
-After production review, set `ALLOW_INDEXING=true`, rebuild, verify `/robots.txt`, `/sitemap.xml`, canonical links and hreflang, then submit the sitemap to Google Search Console and Bing Webmaster Tools. Retired AI/admin/login routes must not appear in navigation or the sitemap.
+After production review, set `ALLOW_INDEXING=true`, restart the Web process, verify `/robots.txt`, `/sitemap.xml`, canonical links and hreflang, then submit the sitemap to Google Search Console and Bing Webmaster Tools. Retired AI/admin/login routes must not appear in navigation or the sitemap. Indexing policy, like origin and contact, is runtime env and is not baked into the image.
 
 ## Reverse proxy notes
 

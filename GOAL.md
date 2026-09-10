@@ -21,7 +21,7 @@
 ## 1. 产品默认值与明确不做的范围
 
 - 品牌：HXSL Tools；品牌、Logo、域名、联系渠道全部配置化。
-- 规范域名：`https://hxsl.org`；默认英语，面向海外创作者、开发者与普通文件处理用户。
+- 规范域名：公开 origin 由每次部署的 `SITE_URL` 提供，仓库不内置域名；默认英语，面向海外创作者、开发者与普通文件处理用户。
 - 语言：`en`、`zh-CN`、`zh-TW`、`es`、`pt-BR`、`de`、`fr`、`ja`。架构支持将来增加韩语、阿拉伯语等，并预留 RTL；本期不要求发布未列入首发的语言。
 - 四个一级分类：PDF Tools、Image Tools、SVG Tools、Icon Tools。
 - 基础网页工具免注册。优先使用本地计算，降低运营成本。
@@ -428,7 +428,7 @@ pnpm verify
 
 ```dotenv
 SITE_NAME=HXSL Tools
-SITE_URL=https://hxsl.org
+SITE_URL=
 DEFAULT_LOCALE=en
 APP_PORT=13080
 ALLOW_INDEXING=false
@@ -443,7 +443,7 @@ RESULT_TTL_SECONDS=900
 CONTACT_EMAIL=
 ```
 
-页数、像素、并发和超时还必须有独立配置，不得认为仅限制 MB 已足够。生产变更域名或语言等构建时变量后要按说明重建。
+页数、像素、并发和超时还必须有独立配置，不得认为仅限制 MB 已足够。公开 origin（`SITE_URL`）与联系邮箱来自运行时环境；生产变更语言等构建时变量后要按说明重建。
 
 ## 16. 依赖与许可证
 

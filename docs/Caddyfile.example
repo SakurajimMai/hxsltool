@@ -1,12 +1,12 @@
-# Copy this file to the Caddy host and replace the host names if SITE_URL differs.
+# SITE_HOST is the public hostname from the operator environment (no scheme).
 # Compose publishes HXSL on 0.0.0.0:13080 by default; this proxy uses the local
 # endpoint and should be paired with a firewall rule that limits direct access.
 
-www.hxsl.org {
-  redir https://hxsl.org{uri} permanent
+www.{$SITE_HOST} {
+  redir https://{$SITE_HOST}{uri} permanent
 }
 
-hxsl.org {
+{$SITE_HOST} {
   encode zstd gzip
 
   # Keep uploads within the application contract (MAX_PDF_MB defaults to 50).

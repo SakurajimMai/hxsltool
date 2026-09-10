@@ -2,14 +2,15 @@ import { LOCALES } from "../packages/tool-registry/src/index";
 const locales = LOCALES;
 const configuredDefaultLocale = process.env.DEFAULT_LOCALE ?? "en";
 function positiveNumber(value: string | undefined, fallback: number) { const parsed = Number(value ?? fallback); return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback; }
+function envText(name: string) { const value = process.env[name]?.trim(); return value ? value : undefined; }
 
 export const siteConfig = {
   name: process.env.SITE_NAME ?? "HXSL Tools",
-  url: process.env.SITE_URL ?? "https://hxsl.org",
+  url: envText("SITE_URL") ?? `http://127.0.0.1:${envText("APP_PORT") ?? "13080"}`,
   defaultLocale: locales.includes(configuredDefaultLocale as (typeof locales)[number]) ? configuredDefaultLocale as (typeof locales)[number] : "en",
   locales,
-  allowIndexing: process.env.ALLOW_INDEXING !== "false",
-  contactEmail: process.env.CONTACT_EMAIL || "hello@hxsl.org",
+  allowIndexing: envText("ALLOW_INDEXING") !== "false",
+  contactEmail: envText("CONTACT_EMAIL") ?? "",
   maxFilesPerBatch: positiveNumber(process.env.MAX_FILES_PER_BATCH, 100),
   maxImageMb: positiveNumber(process.env.MAX_IMAGE_MB, 8),
   maxPdfMb: positiveNumber(process.env.MAX_PDF_MB, 50),
