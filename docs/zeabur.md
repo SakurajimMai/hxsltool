@@ -75,7 +75,42 @@ www.你的域名
 
 不是启动所必需。不设也能处理文件。公网建议设置：任务下载令牌用 HMAC 存盘，避免有人改任务目录里的 `job.json` 伪造令牌。以后若给任务目录挂 Volume，密钥不能改，否则旧下载链接全部失效。
 
-可选：`SITE_NAME`、`DEFAULT_LOCALE`、广告相关 `ENABLE_ADS` / `GOOGLE_ADSENSE_CLIENT` / `GOOGLE_ADSENSE_SLOT`、任务限额。广告默认关。
+可选：`SITE_NAME`、`DEFAULT_LOCALE`、任务限额。广告见下一节，默认关。
+
+## 3.1 Google AdSense
+
+广告默认关闭。只设 publisher id、不设 `ENABLE_ADS=true`，页面不会加载广告脚本，`/ads.txt` 也是 404。
+
+先保证站点已经是 HTTPS、`SITE_URL` 带 `https://`、隐私页能打开。再在 [Google AdSense](https://www.google.com/adsense/) 添加与 `SITE_URL` 一致的站点（`www` 和裸域算两个主机，只绑了 `www` 就添加 `www`）。
+
+Zeabur Variables 增加：
+
+| Key | 必填 | 值 |
+| --- | --- | --- |
+| `ENABLE_ADS` | 是 | `true` |
+| `GOOGLE_ADSENSE_CLIENT` | 是 | AdSense 的 publisher id，格式必须是 `ca-pub-` 加 10～22 位数字，例如 `ca-pub-1234567890123456`。写成 `pub-…` 或任意乱码都不会开启 |
+| `GOOGLE_ADSENSE_SLOT` | 否 | 展示广告单元的 slot id（纯数字）。有它才会在页脚上方放一块自动尺寸广告；只有 Auto ads 时可以留空 |
+| `GOOGLE_ADSENSE_AUTO_ADS` | 否 | 默认视为 `true`。设为 `false` 可关掉 Auto ads，只保留 slot |
+
+不要勾 Shared。改完重启服务（不必重新构建镜像）。CSP、页脚法律文案、隐私页广告说明会按运行时环境切换。
+
+验收：
+
+```bash
+curl -fsS https://你的域名/ads.txt
+```
+
+开启成功时应类似：
+
+```
+google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+```
+
+`pub-` 这一段由 `ca-pub-…` 去掉 `ca-` 得到。若返回 `Not found`，说明开关没开或 client 格式不对。
+
+页面上应能看到 AdSense 脚本 `pagead2.googlesyndication.com`，页脚不再写「没有广告脚本」。AdSense 后台还要完成站点验证和审核，审核通过前可能不出广告，那是 Google 侧状态，不是容器没配上。
+
+关掉：`ENABLE_ADS=false` 或删掉 `GOOGLE_ADSENSE_CLIENT`，再重启。
 
 ## 4. Volumes
 
@@ -135,6 +170,7 @@ docker compose up -d
 | 现象 | 原因 | 处理 |
 | --- | --- | --- |
 | HTML 全站 500，Digest 一串数字；`/api/health` 却是 200 | `SITE_URL` 没有 `https://` | 改成 `https://主机`，重启 |
+| `/ads.txt` 404，页面没有广告脚本 | 只填了 client 或格式不是 `ca-pub-`+数字 | 同时设 `ENABLE_ADS=true` 和合法 client，重启 |
 | 域名打不开，health 也不通 | Ports 填了 `13080`，进程在听 `3000` | Port 改回 `3000`，或同时设 `PORT=13080` |
 | 首页跳到 `http://` | 未设 `TRUSTED_PROXY=true` | 加上并重启 |
 | Git 构建超时 / 磁盘不足 | 正在源码安装 LibreOffice | 改用 GHCR 镜像 |
