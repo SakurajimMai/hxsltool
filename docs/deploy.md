@@ -39,6 +39,36 @@ Server-labelled jobs execute in the Web process. Redis and a separate server Wor
 
 Put Caddy or Nginx in front for TLS and canonical-host redirects. Review [`docs/Caddyfile.example`](./Caddyfile.example) before use. Set `TRUSTED_PROXY=true` only when a trusted proxy overwrites `X-Forwarded-Proto`; leave it `false` for direct access.
 
+## Zeabur
+
+HXSL Tools needs the production Web image (`qpdf`, Poppler, Tesseract, LibreOffice). Do not let Zeabur's Node/Next builder deploy `apps/web` alone. `zbpack.json` points Git deploys at `Dockerfile.web`. Zeabur does not deploy Compose YAML.
+
+The process listens on `HOSTNAME=0.0.0.0` and `PORT` (image default `3000`; Zeabur injects `PORT`). Job folders stay under `HXSL_JOB_DIR` (`/var/lib/hxsl`) and expire; a persistent volume is not required.
+
+Prefer pulling the already-built GHCR image (faster, same artifact as Compose):
+
+1. Create a Zeabur project and add a **Docker Images** service.
+2. Image: `ghcr.io/sakurajimmai/hxsltool:latest` (or `sha-<commit>`). HTTP port `3000`, port name `web`.
+3. Set the variables below. Generate `JOB_TOKEN_SECRET` in the dashboard; do not paste production secrets into git.
+4. Bind a domain. After TLS is live, set `SITE_URL` to that origin (`https://…`, no trailing slash). Until a custom domain is bound, `${ZEABUR_WEB_URL}` is the public origin Zeabur assigned to the `web` port.
+5. Confirm `GET /api/health` returns `200` and former `/en/ai/*` and `/admin` paths are `404`.
+
+Git alternative: add a service from `SakurajimMai/hxsltool`. Zeabur must build `Dockerfile.web` (see `zbpack.json`). The first image build installs LibreOffice and is slow; if it fails on disk or time, use the GHCR image instead.
+
+Required variables (no checked-in public origin):
+
+| Key | Value |
+| --- | --- |
+| `SITE_URL` | Public origin for this deployment (`${ZEABUR_WEB_URL}` or the bound HTTPS origin) |
+| `TRUSTED_PROXY` | `true` |
+| `JOB_TOKEN_SECRET` | Strong random secret |
+| `CONTACT_EMAIL` | Operator mailbox, or empty |
+| `ALLOW_INDEXING` | `false` until origin, TLS, and privacy copy are reviewed |
+| `ENABLE_SERVER_TOOLS` | `true` |
+| `HXSL_JOB_DIR` | `/var/lib/hxsl` |
+
+Optional: `SITE_NAME`, `DEFAULT_LOCALE`, ads keys, job limits. Give the service enough memory for in-process LibreOffice jobs (plan for about 2 GiB). Do not enable Zeabur's Node builder (`ZBPACK_IGNORE_DOCKERFILE`).
+
 ## Retired data
 
 The former admin SQLite volume and private AI asset directory are no longer mounted, opened, migrated or deleted by the application. Before deploying this version, take a retention-compliant offline archive if those records must be kept. Remove any upstream AI-provider callbacks, OAuth redirect registrations and payment webhooks separately. Do not delete an old named volume as part of the application update.

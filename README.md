@@ -64,6 +64,8 @@ To build the image from local source:
 docker compose -f compose.build.yaml up -d --build
 ```
 
+Zeabur can run the same image: pull `ghcr.io/sakurajimmai/hxsltool` as a Docker service, or import this GitHub repo so it builds `Dockerfile.web` (`zbpack.json`). Set `SITE_URL`, `TRUSTED_PROXY=true`, and `JOB_TOKEN_SECRET` in the Zeabur dashboard. Do not use Zeabur's Node/Next builder. Details are in [docs/deploy.md](docs/deploy.md).
+
 The default host binding is `0.0.0.0:13080`. For production, put Caddy or Nginx in front, restrict direct port access, and configure DNS, TLS, contact details, `ALLOW_INDEXING=true`, and webmaster verification as documented in [docs/deploy.md](docs/deploy.md).
 
 The retired administrator volume is no longer declared or mounted. Upgrades must not delete old SQLite databases, account records, payment records or private AI files; archive or remove them only through a separate, explicitly authorized data-retention procedure. See [retirement notes](docs/v3/remove-ai-admin-login-20260910.md).

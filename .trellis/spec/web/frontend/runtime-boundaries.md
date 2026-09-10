@@ -75,4 +75,4 @@ const job = await createJob(files, toolId, options, consent, clientKey);
 }
 ```
 
-GitHub Actions on `main` publishes `ghcr.io/sakurajimmai/hxsltool` (`latest` and `sha-<commit>`) from `Dockerfile.web`. The image build may bake product defaults such as `SITE_NAME` and `DEFAULT_LOCALE`, but not a public origin, contact address, or indexing policy. Production start is `docker compose up -d` (`compose.yaml` pulls GHCR; `compose.ghcr.yaml` is an alias). Local source builds use `compose.build.yaml`. Do not commit `.env`.
+GitHub Actions on `main` publishes `ghcr.io/sakurajimmai/hxsltool` (`latest` and `sha-<commit>`) from `Dockerfile.web`. The image build may bake product defaults such as `SITE_NAME` and `DEFAULT_LOCALE`, but not a public origin, contact address, or indexing policy. Production start is `docker compose up -d` (`compose.yaml` pulls GHCR; `compose.ghcr.yaml` is an alias). Local source builds use `compose.build.yaml`. Zeabur must run that same Web image (`zbpack.json` → `Dockerfile.web`, or pull GHCR); listen on injected `PORT`, set `TRUSTED_PROXY=true` and env-only `SITE_URL`. Do not commit `.env`.
